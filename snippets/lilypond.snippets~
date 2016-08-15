@@ -1,0 +1,13 @@
+snippet trip
+	\times 2/3 {${1}}
+snippet vers
+	\version "2.13.30"
+snippet vocal
+	\new Staff \relative c'' {
+	\new Voice = "${1:}" {\$1}
+	}
+	\new Lyrics \lyricsto "$1" {\$1Lyrics}
+snippet test
+	test ${1} result $1
+
+

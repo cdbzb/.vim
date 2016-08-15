@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/michael/Notes'
+let g:netrw_dirhist_2='/Volumes/Zippy/puddle/All That Fall Lilypond Scores'
+let g:netrw_dirhist_3='/Users/michael/reascripts'
+let g:netrw_dirhist_4='/Library/Audio/MIDI Drivers/EmagicUSBMIDIDriver.plugin'
+let g:netrw_dirhist_5='/Users/michael/Library/Application Support/REAPER'
+let g:netrw_dirhist_6='/Users/michael/ActionWindowData/macros'
+let g:netrw_dirhist_7='/Users/michael/ActionWindowData'

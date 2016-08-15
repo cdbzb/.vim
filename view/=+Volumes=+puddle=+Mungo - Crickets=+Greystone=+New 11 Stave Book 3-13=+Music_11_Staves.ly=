@@ -1,0 +1,213 @@
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+argglobal
+let s:cpo_save=&cpo
+set cpo&vim
+map <buffer> <S-F12> :g/%.*/normal 0x
+map <buffer> <F12> :g!/%.*/normal 0i%
+map <buffer> <F10> :emenu 
+map <buffer> <F9> :w:se makeprg=make\ -k:make
+map <buffer> <F8> :cn
+map <buffer> <F7> :cp
+map <buffer> <F6> :!gv --watch %<.ps &
+map <buffer> <F5> :w:se makeprg=lilypond\ %<:make
+map <buffer> <F4> :w:se makeprg=lilypond\ -m\ %<:make:!timidity %<.midi
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i,k
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=/Applications/MacVim.app/Contents/Resources/vim/syntax/lilypond-words
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal noexpandtab
+if &filetype != 'lilypond'
+setlocal filetype=lilypond
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=GetLilyPondIndent()
+setlocal indentkeys=o,O,},>>,!^F
+setlocal noinfercase
+setlocal iskeyword=33,35-39,42-58,60-90,94,95,97-122,126,_
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal nomacmeta
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=syntaxcomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'lilypond'
+setlocal syntax=lilypond
+endif
+setlocal tabstop=8
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+1,19fold
+33,210fold
+224,227fold
+241,279fold
+293,682fold
+727,751fold
+767,768fold
+783,799fold
+816,816fold
+835,899fold
+941,1055fold
+1068,1072fold
+1085,1112fold
+1126,1138fold
+1151,1176fold
+1192,1195fold
+1209,1241fold
+1255,1384fold
+1413,1479fold
+1508,1543fold
+1557,1566fold
+1580,1612fold
+1626,1804fold
+1818,1843fold
+1857,1885fold
+1898,2228fold
+2242,2256fold
+2283,2294fold
+2385,2385fold
+1
+normal zc
+33
+normal zc
+224
+normal zc
+241
+normal zc
+293
+normal zc
+727
+normal zc
+767
+normal zc
+783
+normal zc
+816
+normal zc
+835
+normal zc
+941
+normal zc
+1068
+normal zc
+1085
+normal zc
+1126
+normal zc
+1151
+normal zc
+1192
+normal zc
+1209
+normal zc
+1255
+normal zc
+1413
+normal zc
+1508
+normal zc
+1557
+normal zc
+1580
+normal zc
+1626
+normal zc
+1818
+normal zc
+1857
+normal zc
+1898
+normal zc
+2242
+normal zc
+2283
+normal zc
+2385
+normal zc
+let s:l = 2272 - ((1 * winheight(0) + 29) / 59)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+2272
+normal! 0
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+" vim: set ft=vim :

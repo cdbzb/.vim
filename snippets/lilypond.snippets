@@ -1,0 +1,73 @@
+snippet trip
+	\times 2/3 {${1}}
+snippet vers
+	\version "2.13.30"
+snippet vocal
+	\new Staff \relative c'' {
+	\new Voice = "${1:}" {\$1}
+	}
+	\new Lyrics \lyricsto "$1" {\$1Lyrics}
+snippet name
+	\set Staff.instrumentName = #"${1}"
+snippet shortname
+	\set Staff.shortInstrumentName = #"${1}"
+snippet midiname
+	\set Staff.midiInstrument = #"${1}"
+snippet ll
+	\parallellMusic #'(${1})
+snippet addstaff
+	\once \override Staff.TimeSignature #'stencil = ##f
+snippet scale
+	\scaleDurations #'(2 . 3)
+	
+snippet lb
+	${2} | \lyricmode {${1}} |
+snippet ly
+	| \lyricmode {${1}} |
+snippet metmod
+	\include "../include/metricModulations.ly"
+#empty bars
+snippet beats
+	\set Timing.beatStructure = #'(${1}) 
+snippet inst
+	\instrumentSwitch "${1}"
+snippet <<
+	<< {${1}} \\ {${2}} >>
+snippet <<<
+	<< {${1}} \\ 
+	{${2}} >>
+snippet stf
+	\new Staff = "${1}" {
+		\${2}
+	}
+snippet voc 
+	\tag #'vocal 
+snippet pf
+	\tag #'pf {${1}} 
+snippet names
+	\with {instrumentName = #"${1}" shortInstrumentName = #"${2}"}
+snippet ossia
+	\new Staff \with{alignAboveContext = #"${1}" firstClef = ##f
+################### percussion map
+snippet tri
+	\triangle f''
+snippet crash
+	\cross f''
+snippet choke
+	\cross d''${1}-!
+snippet piat1
+	\cross d''${1}--
+snippet piat2
+	\cross d''${1}\lv
+snippet piat3
+	\cross d''${1}->\lv
+snippet gong1
+	\cross b'
+snippet gong2
+	\cross g'
+snippet tam
+	\cross e'
+snippet bd 
+	d'
+snippet sn
+	f'
