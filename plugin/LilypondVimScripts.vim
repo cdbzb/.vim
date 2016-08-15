@@ -1,6 +1,4 @@
-function! TempComment ()
-	execute "normal 0i%x%"
-endfunction
+
 
 function! CommentToTimeSignature ()
 	call search('time\>' , 'bs')
@@ -34,7 +32,13 @@ endfunction
 
 function! RemoveSelection ()
 	exe "normal mz"
-	exe "%s/%x%//g"
+	call search ("aralle","bw")
+	call search ("%bn","")
+	exe "normal k"
+	call StartHere()
+	exe "normal G"
+	call search ("%bn","b")
+	call EndHere()
 	exe "normal `z"
 endfunction
 
@@ -158,8 +162,6 @@ function! AddInstrumentList (instrumentList)
 	endwhile
 	exe "normal ``"
 endfunct
-
-
 
 function! AddCR(...)
 	exe "normal m`"
