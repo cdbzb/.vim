@@ -15,7 +15,6 @@ nnoremap <buffer> <silent> ]] m':call search('^\s*fu\%[nction]\>', "W")
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
-setlocal balloonexpr=
 setlocal nobinary
 setlocal bufhidden=
 setlocal buflisted
@@ -70,9 +69,7 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
-setlocal lispwords=
 setlocal nolist
-setlocal nomacmeta
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
@@ -110,7 +107,6 @@ setlocal tags=
 setlocal textwidth=78
 setlocal thesaurus=
 setlocal noundofile
-setlocal undolevels=-123456
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
@@ -118,13 +114,13 @@ setlocal wrapmargin=0
 silent! normal! zE
 122,152fold
 122
-normal! zo
-let s:l = 194 - ((32 * winheight(0) + 20) / 40)
+normal zo
+let s:l = 147 - ((2 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-194
-normal! 0
+147
+normal! 010l
 lcd ~/.vim/doc
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost

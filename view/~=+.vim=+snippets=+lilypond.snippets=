@@ -3,7 +3,6 @@ argglobal
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
-setlocal balloonexpr=
 setlocal nobinary
 setlocal bufhidden=
 setlocal buflisted
@@ -47,8 +46,8 @@ setlocal formatexpr=
 setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
+setlocal iminsert=0
+setlocal imsearch=0
 setlocal include=
 setlocal includeexpr=
 setlocal indentexpr=
@@ -58,9 +57,7 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
-setlocal lispwords=
 setlocal nolist
-setlocal nomacmeta
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
@@ -98,47 +95,50 @@ setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
 setlocal noundofile
-setlocal undolevels=-123456
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 6
-normal! zo
+normal zo
 11
-normal! zo
+normal zo
 21
-normal! zo
+normal zo
 24
-normal! zo
+normal zo
 26
-normal! zo
+normal zo
 28
-normal! zo
+normal zo
 31
-normal! zo
+normal zo
 33
-normal! zo
+normal zo
 35
-normal! zo
+normal zo
 37
-normal! zo
+normal zo
 40
-normal! zo
+normal zo
 41
-normal! zo
+normal zo
+40
+normal zo
 44
-normal! zo
+normal zo
 46
-normal! zo
+normal zo
 48
-normal! zo
-let s:l = 48 - ((46 * winheight(0) + 25) / 50)
+normal zo
+76
+normal zo
+let s:l = 75 - ((22 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-48
-normal! 09|
+75
+normal! 09l
 lcd ~/.vim/doc
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
