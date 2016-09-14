@@ -393,10 +393,21 @@ function! GetFromInstrument()
 	call JumptoInstrumentNonInteractive(inst)
 	exe "normal  yab`zvabp"
 endfunction
-	
+
+
+function! Quote()
+	let inst = input("inst?")
+	exe "normal vab"
+	exe "s/\\cr/s/g"
+	exe "normal vab"
+"	exe "normal! ``ysab{"
+"	exe "normal i ," . inst
+endfunction
+
 
 """"""""""""""" Maps """""""""""""""""""""""
-
+map <Leader>q vab:s/\cr/s/g<CR>``ysab}
+map <Leader>w i\addQuote""<ESC>i
 map <Leader>r :call InsertRests()<CR>
 imap <Leader>r <ESC>:call InsertRests()<CR>i
 map <Leader>k :call PreviousBarThisInstrument() <CR>
@@ -420,6 +431,7 @@ map <Leader>A :call StartHere()<CR>
 map <Leader>Z :call EndHere()<CR>
 map <Leader>s :call Sco()<CR>
 map <Leader>f :call Flags('')
+
 
 command! CR call AddCR()
 function! AddOrch()
