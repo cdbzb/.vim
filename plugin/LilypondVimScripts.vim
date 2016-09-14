@@ -124,7 +124,7 @@ function! AddInstrument ()
 		exe "silent! normal a ,r |"
 		exe "silent! normal! \<ESC>"
 		"add label
-		call search (insertAfter,"")
+		call search (insertAfter,"W")
 		exe "silent normal ea " . newInstrument . " \<ESC>"
 	endwhile
 	exe "normal ``"
@@ -154,7 +154,7 @@ function! AddInstrumentList (instrumentList)
 			exe "silent! normal! \<ESC>"
 		endfor
 		"add label
-		call search(insertAfter,"")
+		call search(insertAfter,"W")
 		exe "silent normal e"
 		for inst in a:instrumentList 
 			exe "silent! normal! a " . inst 
@@ -398,6 +398,7 @@ map <Leader>A :call StartHere()<CR>
 map <Leader>Z :call EndHere()<CR>
 map <Leader>s :call Sco()<CR>
 map <Leader>f :call Flags('')
+map <Leader>rpr :!rpr reaper/Vocal.RPP &<CR>
 
 command! CR call AddCR()
 function! AddOrch()
