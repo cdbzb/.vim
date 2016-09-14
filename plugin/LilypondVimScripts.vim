@@ -2,7 +2,7 @@
 
 function! CommentToTimeSignature ()
 	call search('time\>' , 'bs')
-	call search('%bn' , 'b')
+	call search('%bn' , 'b,)
 	execute "normal k"
 	let bottomline = prevnonblank( line ('.'))
 	let barone = search('bn1\>' , 'bn')
@@ -22,12 +22,12 @@ function! CompileSection ()
 	call CommentToTimeSignature ()
 	call CommentToEnd ()
 	exe "normal `z:w<CR>"
-	exe "w\|!tmux new -d \"lilypond % %\""
-" map <F5> :w<bar>:!tmux new -d "lilypond -o=<C-R>% <C-R>% "<CR> <ENTER> 
+	exe "w\|!tmux new -d,, \"lilypond % %\""
+" map <F5> :w<bar>:!tmux new -d,, "lilypond -o=<C-R>% <C-R>% "<CR> <ENTER> 
 endfunction
 
 function! Compile()
-	exe "w\|!tmux new -d \"lilypond % %\""
+	exe "w\|!tmux new -d,, \"lilypond % %\""
 endfunction
 
 function! RemoveSelection ()
@@ -73,7 +73,7 @@ function! InsertRests ()
 	if virtcol('.')==1
 		exe "normal i" . correctRests . " "
 	else
-		execute "normal a ".correctRests." "
+		execute "normal a,, ".correctRests." "
 	endif
 	return correctRests
 endfunction
@@ -82,7 +82,7 @@ function! PreviousBarThisInstrument ()
 	let i = 0
 	let insnum = GetNumberofInstruments()
 	while i < insnum 
-		call search ( "|" , 'b' )
+		call search ( "|" , 'b, )
 		let i = i + 1
 	endwhile
 	if search ( "|" , "b" , line(".") )
@@ -122,7 +122,7 @@ function! AddInstrument ()
 			let i = i + 1
 			call search ("|","W")
 		endwhile
-		exe "silent! normal a ,r |"
+		exe "silent! normal a,, ,r |"
 		exe "silent! normal! \<ESC>"
 		"add label
 		call search (insertAfter,"W")
@@ -140,7 +140,7 @@ function! AddInstrumentList (instrumentList)
 	call search (insertAfter,"")
 	exe "silent normal e"
 	for inst in a:instrumentList 
-		exe "silent! normal! a " . inst 
+		exe "silent! normal! a,, " . inst 
 	endfor
 	" add bars and  rests
 	let num = InstrumentNumber(insertAfter)
@@ -151,14 +151,14 @@ function! AddInstrumentList (instrumentList)
 			call search ("|","W")
 		endwhile
 		for inst in a:instrumentList
-			exe "silent! normal a ,r |"
+			exe "silent! normal a, ,r |"
 			exe "silent! normal! \<ESC>"
 		endfor
 		"add label
 		call search(insertAfter,"W")
 		exe "silent normal e"
 		for inst in a:instrumentList 
-			exe "silent! normal! a " . inst 
+			exe "silent! normal! a, " . inst 
 		endfor
 	endwhile
 	exe "normal ``"
@@ -222,7 +222,7 @@ function! RenumberBars ()
 endfunction
 
 function! SearchNotes ()
-	execute 'normal! /\<[a-g]\(is\|es\|\s\|\d\|,\|' . "'" . '\|)\|>\|\\\|}\)' . "\<CR>"
+	execute 'normal! /\<[a-g]\(is\|es\|\s\|\d,\|,\|' . "'" . '\|)\|>\|\\\|}\)' . "\<CR>"
 endfunction
 
 function! CountInstrumentsonLine ()
@@ -239,7 +239,7 @@ endfunction
 function! JumptoInstrument ()
 	let g:inst = input("inst?")
 	let num = InstrumentNumber(g:inst)
-	call search ("%bn",'b')
+	call search ("%bn",'b)
 	let i = 0
 	while i < num
 		call search ('|','')
@@ -251,7 +251,7 @@ endfunction
 
 function! JumptoInstrumentNonInteractive (inst)
 	let num = InstrumentNumber(a:inst)
-	call search ("%bn",'b')
+	call search ("%bn",'b)
 	let i = 0
 	while i < num
 		call search ('|','')
@@ -393,41 +393,40 @@ function! GetFromInstrument()
 	call JumptoInstrumentNonInteractive(inst)
 	exe "normal  yab`zvabp"
 endfunction
-	
+
+
+function! Quote()
+	let inst = input("inst ?")
+	call SelectBar()
+ 	s/\%V\cr/s/g
+	exe "normal ``S}"
+	exe 'normal i\quoteDuring "' . inst . '" '
+endfunction
 
 """"""""""""""" Maps """""""""""""""""""""""
-
+map <Leader>q call Quote()<CR>
+map <Leader>w F{i\quoteDuring ""<ESC>i
 map <Leader>r :call InsertRests()<CR>
 imap <Leader>r <ESC>:call InsertRests()<CR>i
 map <Leader>k :call PreviousBarThisInstrument() <CR>
 map <Leader>j :call NextBarThisInstrument() <CR>
-map <Leader>g :call GetFromInstrument()<CR>
+map <Leader>g,, :call GetFromInstrument()<CR>
 map <C-k> :call AddOctave()<CR>
 map <C-j> :call SubtractOctave()<CR>
 map <C-l> :call SearchNotes()<CR>
-map <C-b> :call SelectBars()<CR>
+map <C-b,,> :call SelectBars()<CR>
 map ,, :call SetSection()<CR>
 map ,< :call RemoveSelection()<CR>
 map ,<Space> :!osascript ~/scripts/SendKeystoREAPER.applescript<CR>
 map ,comp :call Compile()<CR>
 map ,m ,comp<CR>
-map <C-g> :call JumpAgain()<CR>
-map <C-f> :call JumptoInstrument()<CR>
-map <C-d> cab,r<ESC>
-map <Leader>b :call PrevBar()<CR>l
-map <Leader>e :call NextBar()<CR>h
+map <C-g,,> :call JumpAgain()<CR>
+map <C-f,,> :call JumptoInstrument()<CR>
+map <C-d,,> cab,r<ESC>
+map <Leader>b,, :call PrevBar()<CR>l
+map <Leader>e,, :call NextBar()<CR>h
 map <Leader>A :call StartHere()<CR>
 map <Leader>Z :call EndHere()<CR>
 map <Leader>s :call Sco()<CR>
-map <Leader>f :call Flags('')
 map <Leader>rpr :!rpr reaper/Vocal.RPP &<CR>
 
-command! CR call AddCR()
-function! AddOrch()
-	call AddInstrumentList(['fl','ob','kl','bn','hn','tn','tym','perc','fol','hpL','hpR','vn','vII','va','vc','cb'])
-	call AddCR('lh')
-	call AddCR('bn')
-	call AddCR('tn')
-	call AddCR('fol')
-	call AddCR('hpR')
-endfunction
