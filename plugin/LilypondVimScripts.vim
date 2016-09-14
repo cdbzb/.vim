@@ -31,15 +31,16 @@ function! Compile()
 endfunction
 
 function! RemoveSelection ()
-	exe "normal mz"
+	exe "silent normal mz"
 	call search ("aralle","bw")
 	call search ("%bn","")
 	exe "normal k"
 	call StartHere()
 	exe "normal G"
 	call search ("%bn","b")
+	exe "normal j"
 	call EndHere()
-	exe "normal `z"
+	exe "silent normal `z"
 endfunction
 
 function! GetTimeSignature ()
@@ -124,8 +125,8 @@ function! AddInstrument ()
 		exe "silent! normal a ,r |"
 		exe "silent! normal! \<ESC>"
 		"add label
-		call search (insertAfter,"")
-		exe "silent normal ea " . newInstrument . " \<ESC>"
+		call search (insertAfter,"W")
+		 exe "silent normal ea " . newInstrument . " \<ESC>"
 	endwhile
 	exe "normal ``"
 endfunct
@@ -154,7 +155,7 @@ function! AddInstrumentList (instrumentList)
 			exe "silent! normal! \<ESC>"
 		endfor
 		"add label
-		call search(insertAfter,"")
+		call search(insertAfter,"W")
 		exe "silent normal e"
 		for inst in a:instrumentList 
 			exe "silent! normal! a " . inst 
@@ -238,6 +239,18 @@ endfunction
 function! JumptoInstrument ()
 	let g:inst = input("inst?")
 	let num = InstrumentNumber(g:inst)
+	call search ("%bn",'b')
+	let i = 0
+	while i < num
+		call search ('|','')
+		let i = i + 1
+	endwhile
+	call PrevBar()
+	exe "silent! normal! l"
+endfunction
+
+function! JumptoInstrumentNonInteractive (inst)
+	let num = InstrumentNumber(a:inst)
 	call search ("%bn",'b')
 	let i = 0
 	while i < num
@@ -374,12 +387,21 @@ function! Sco()
 endfunction
 
 
+function! GetFromInstrument()
+	let inst = input("from inst?")
+	exe "normal mz"
+	call JumptoInstrumentNonInteractive(inst)
+	exe "normal  yab`zvabp"
+endfunction
+	
+
 """"""""""""""" Maps """""""""""""""""""""""
 
 map <Leader>r :call InsertRests()<CR>
 imap <Leader>r <ESC>:call InsertRests()<CR>i
 map <Leader>k :call PreviousBarThisInstrument() <CR>
 map <Leader>j :call NextBarThisInstrument() <CR>
+map <Leader>g :call GetFromInstrument()<CR>
 map <C-k> :call AddOctave()<CR>
 map <C-j> :call SubtractOctave()<CR>
 map <C-l> :call SearchNotes()<CR>
