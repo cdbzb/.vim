@@ -397,15 +397,20 @@ endfunction
 
 function! Quote()
 	let inst = input("inst ?")
+	exe "normal mz"
 	call SelectBar()
- 	s/\%V\cr/s/g
-	exe "normal ``S}"
+	exe "normal yo\<ESC>p"
+ 	s/\cr/s/g
+	exe "normal y$`z"
+	call SelectBar()
+	exe "normal pjdd`z"
+	call SelectBar()
+	exe "normal S}"
 	exe 'normal i\quoteDuring "' . inst . '" '
 endfunction
 
 """"""""""""""" Maps """""""""""""""""""""""
-map <Leader>q call Quote()<CR>
-map <Leader>w F{i\quoteDuring ""<ESC>i
+map <Leader>q :call Quote()<CR>
 map <Leader>r :call InsertRests()<CR>
 imap <Leader>r <ESC>:call InsertRests()<CR>i
 map <Leader>k :call PreviousBarThisInstrument() <CR>
