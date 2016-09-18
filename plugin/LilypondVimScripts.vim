@@ -82,7 +82,7 @@ function! PreviousBarThisInstrument ()
 	let i = 0
 	let insnum = GetNumberofInstruments()
 	while i < insnum 
-		call search ( "|" , 'b, )
+		call search ( "|" , 'b' )
 		let i = i + 1
 	endwhile
 	if search ( "|" , "b" , line(".") )
