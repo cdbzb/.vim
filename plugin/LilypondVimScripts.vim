@@ -68,21 +68,37 @@ let g:rests = { "1/4":"R4" , '2/4':'R2' ,'3/4':'R2.' , '4/4':'R1' , '5/4':'r2. r
 			\'3/16':'R8.' , '6/16':'r8. r' , '9/16':'r8. r r' ,
 			\ '2/2':'R1' , '3/2':'R1.' }
 
+let g:spacers = { "1/4":"s4" , '2/4':'s2' ,'3/4':'s2.' , '4/4':'s1' , '5/4':'s2. s2' , '6/4':'s1.' , '7/4':'s1 s2.' ,
+			\'1/8':'s8' , '2/8':'s4' , '3/8':'s4.' , '4/8':'s2' , '5/8':'s4. s4' , '6/8':'s2.' ,
+			\'7/8':'s2 s4.' , '8/8':'s1' , '9/8':'s4. s s' , 
+			\'3/16':'s8.' , '6/16':'s8. s' , '9/16':'s8. s s' ,
+			\ '2/2':'s1' , '3/2':'s1.' }
+
 function! InsertRests ()
 	let correctRests = get( g:rests , GetTimeSignature() )
 	if virtcol('.')==1
 		exe "normal i" . correctRests . " "
 	else
-		execute "normal a,, ".correctRests." "
+		execute "normal a ".correctRests." "
 	endif
 	return correctRests
+endfunction
+
+function! InsertSpacers ()
+	let correctSpacers = get( g:spacers , GetTimeSignature() )
+	if virtcol('.')==1
+		exe "normal i" . correctSpacers . " "
+	else
+		execute "normal a ".correctSpacers." "
+	endif
+	return correctSpacers
 endfunction
 
 function! PreviousBarThisInstrument ()
 	let i = 0
 	let insnum = GetNumberofInstruments()
 	while i < insnum 
-		call search ( "|" , 'b, )
+		call search ( "|" , 'b' )
 		let i = i + 1
 	endwhile
 	if search ( "|" , "b" , line(".") )
@@ -394,6 +410,9 @@ function! GetFromInstrument()
 	exe "normal  yab`zvabp"
 endfunction
 
+""""""""""""""""
+""" Quoting """"
+""""""""""""""""
 
 function! Quote()
 	let inst = input("inst ?")
@@ -406,10 +425,37 @@ function! Quote()
 	exe "normal pjdd`z"
 	call SelectBar()
 	exe "normal S}"
-	exe 'normal i\quoteDuring "' . inst . '" '
+	exe 'normal i\Q #"' . inst . '" '
 endfunction
 
-""""""""""""""" Maps """""""""""""""""""""""
+function! ContinueQuote()
+	call PreviousBarThisInstrument()
+	call SelectBar()
+	exe 'normal y'
+	call NextBarThisInstrument()
+	call SelectBar()
+	exe 'normal p'
+	exe 'normal F{lci{'
+	call InsertSpacers()
+endfunction
+
+function! ContinueQuoteLine()
+	exe 'normal 0'
+	let i = 1
+	while i<7
+		call ContinueQuote()
+		exe 'normal f|l'
+		let i = i + 1
+	endwhile
+endfunction
+
+function! SwitchInstrumentAndQuote()
+	let inst = input("new inst?")
+	exe 'normal cab \QQ "' . inst . '"'
+endfunction
+
+
+,,""""""""""""""" Maps """""""""""""""""""""""
 map <Leader>q :call Quote()<CR>
 map <Leader>r :call InsertRests()<CR>
 imap <Leader>r <ESC>:call InsertRests()<CR>i
