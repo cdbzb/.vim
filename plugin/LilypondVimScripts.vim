@@ -459,6 +459,7 @@ endfunction
 
 ,,""""""""""""""" Maps """""""""""""""""""""""
 map <Leader>q :call Quote()<CR>
+map <Leader>con :call ContinueQuoteLine()<CR>
 map <Leader>r :call InsertRests()<CR>
 imap <Leader>r <ESC>:call InsertRests()<CR>i
 map <Leader>k :call PreviousBarThisInstrument() <CR>
