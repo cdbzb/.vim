@@ -447,6 +447,8 @@ function! ContinueQuoteLine()
 		exe 'normal f|l'
 		let i = i + 1
 	endwhile
+	exe 'normal V'
+	s/\\instrumentSwitch "[a-z]*"//g
 endfunction
 
 function! SwitchInstrumentAndQuote()
