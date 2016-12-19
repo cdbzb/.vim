@@ -469,17 +469,17 @@ map <Leader>g,, :call GetFromInstrument()<CR>
 map <C-k> :call AddOctave()<CR>
 map <C-j> :call SubtractOctave()<CR>
 map <C-l> :call SearchNotes()<CR>
-map <C-b,,> :call SelectBars()<CR>
+map <C-b> :call SelectBars()<CR>
 map ,, :call SetSection()<CR>
 map ,< :call RemoveSelection()<CR>
 map ,<Space> :!osascript ~/scripts/SendKeystoREAPER.applescript<CR>
 map ,comp :call Compile()<CR>
 map ,m ,comp<CR>
-map <C-g,,> :call JumpAgain()<CR>
-map <C-f,,> :call JumptoInstrument()<CR>
-map <C-d,,> cab,r<ESC>
-map <Leader>b,, :call PrevBar()<CR>l
-map <Leader>e,, :call NextBar()<CR>h
+map <C-g> :call JumpAgain()<CR>
+map <C-f> :call JumptoInstrument()<CR>
+map <C-d> cab,r<ESC>
+map <Leader>b :call PrevBar()<CR>l
+map <Leader>e :call NextBar()<CR>h
 map <Leader>A :call StartHere()<CR>
 map <Leader>Z :call EndHere()<CR>
 map <Leader>s :call Sco()<CR>
