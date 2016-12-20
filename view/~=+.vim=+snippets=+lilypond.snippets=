@@ -100,45 +100,43 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 6
-normal zo
+normal! zo
 11
-normal zo
+normal! zo
 21
-normal zo
+normal! zo
 24
-normal zo
+normal! zo
 26
-normal zo
+normal! zo
 28
-normal zo
+normal! zo
 31
-normal zo
+normal! zo
 33
-normal zo
+normal! zo
 35
-normal zo
+normal! zo
 37
-normal zo
+normal! zo
 40
-normal zo
+normal! zo
 41
-normal zo
-40
-normal zo
+normal! zo
 44
-normal zo
+normal! zo
 46
-normal zo
+normal! zo
 48
-normal zo
+normal! zo
 76
-normal zo
-let s:l = 75 - ((22 * winheight(0) + 19) / 39)
+normal! zo
+let s:l = 75 - ((11 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 75
-normal! 09l
+normal! 010|
 lcd ~/.vim/doc
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
