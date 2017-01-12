@@ -384,7 +384,7 @@ function! EndThreeBarsLater()
 	execute "normal `z"
 endfunction
 
-function SetSection()
+function! SetSection()
 	execute "normal mz"
 	call search('time\>' , 'bs')
 	call search('%bn' , 'b')
@@ -482,7 +482,6 @@ map ,ar {V}y}PV}:!node gmo-node.js<ENTER>
 
 
 
->>>>>>> f29b1121503069a12fb5fdb1e14ce541ed761d51
 
 """"""""""""""" Maps """""""""""""""""""""""
 map <Leader>q :call Quote()<CR>
