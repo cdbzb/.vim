@@ -255,7 +255,7 @@ endfunction
 function! JumptoInstrument ()
 	let g:inst = input("inst?")
 	let num = InstrumentNumber(g:inst)
-	call search ("%bn",'b)
+	call search ("%bn",'b')
 	let i = 0
 	while i < num
 		call search ('|','')
@@ -428,6 +428,20 @@ function! Quote()
 	exe 'normal i\Q #"' . inst . '" '
 endfunction
 
+function! ChangeAndQuote()
+	let inst = input("inst ?")
+	exe "normal mz"
+	call SelectBar()
+	exe "normal yo\<ESC>p"
+ 	s/\cr/s/g
+	exe "normal y$`z"
+	call SelectBar()
+	exe "normal pjdd`z"
+	call SelectBar()
+	exe "normal S}"
+	exe 'normal i \instrumentSwitch "' . inst . '" \Q #"' . inst . '" '
+endfunction
+
 function! ContinueQuote()
 	call PreviousBarThisInstrument()
 	call SelectBar()
@@ -452,11 +466,11 @@ function! ContinueQuoteLine()
 	exe "normal \<ESC>"
 endfunction
 
-function! SwitchInstrumentAndQuote()
-	let inst = input("new inst?")
-	exe 'normal cab \QQ "' . inst . '"'
-endfunction
-
+"function! SwitchInstrumentAndQuote()
+"	let inst = input("new inst?")
+"	exe 'normal cab \QQ "' . inst . '"'
+"endfunction
+"
 
 ,,""""""""""""""" Maps """""""""""""""""""""""
 map <Leader>q :call Quote()<CR>
