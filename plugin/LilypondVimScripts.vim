@@ -344,6 +344,8 @@ function! SetRange(start, end)
 	call search("aralle","bws")
 	let charstart = "%bn" . a:start 
 	call search (charstart,"")
+	call search('time\>' , 'bs') " go back to prev TS
+	call search('%bn' , 'b')
 	call StartHere()
 	let charend = "%bn" . a:end 
 	call search (charend,"")
@@ -472,7 +474,17 @@ endfunction
 "endfunction
 "
 
-,,""""""""""""""" Maps """""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""
+"""" js arranger '''''''''''''''''''''''''''''
+"""""""""""""""""""""""""""""""""""""""""""""""
+
+map ,ar {V}y}PV}:!node gmo-node.js<ENTER>
+
+
+
+>>>>>>> f29b1121503069a12fb5fdb1e14ce541ed761d51
+
+""""""""""""""" Maps """""""""""""""""""""""
 map <Leader>q :call Quote()<CR>
 map <Leader>con :call ContinueQuoteLine()<CR>
 map <Leader>r :call InsertRests()<CR>
