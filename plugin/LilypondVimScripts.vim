@@ -344,6 +344,8 @@ function! SetRange(start, end)
 	call search("aralle","bws")
 	let charstart = "%bn" . a:start 
 	call search (charstart,"")
+	call search('time\>' , 'bs') " go back to prev TS
+	call search('%bn' , 'b')
 	call StartHere()
 	let charend = "%bn" . a:end 
 	call search (charend,"")
@@ -457,8 +459,16 @@ function! SwitchInstrumentAndQuote()
 	exe 'normal cab \QQ "' . inst . '"'
 endfunction
 
+"""""""""""""""""""""""""""""""""""""""""""""""
+"""" js arranger '''''''''''''''''''''''''''''
+"""""""""""""""""""""""""""""""""""""""""""""""
 
-,,""""""""""""""" Maps """""""""""""""""""""""
+map ,ar {V}y}PV}:!node gmo-node.js<ENTER>
+
+
+
+
+""""""""""""""" Maps """""""""""""""""""""""
 map <Leader>q :call Quote()<CR>
 map <Leader>con :call ContinueQuoteLine()<CR>
 map <Leader>r :call InsertRests()<CR>
