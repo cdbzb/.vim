@@ -485,6 +485,8 @@ map ,ar {V}y}PV}:!node gmo-node.js<ENTER>
 
 """"""""""""""" Maps """""""""""""""""""""""
 map <Leader>q :call Quote()<CR>
+map <Leader>cq :call ContinueQuote()<CR>
+map <Leader>ch :call ChangeAndQuote()<CR>
 map <Leader>con :call ContinueQuoteLine()<CR>
 map <Leader>r :call InsertRests()<CR>
 imap <Leader>r <ESC>:call InsertRests()<CR>i
