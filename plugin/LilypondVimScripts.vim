@@ -444,6 +444,26 @@ function! ChangeAndQuote()
 	exe 'normal i \instrumentSwitch "' . inst . '" \Q #"' . inst . '" '
 endfunction
 
+function! ContinueQuoteSingle()
+	exe 'normal mf'
+	call PreviousBarThisInstrument()
+	call SelectBar()
+	exe 'normal y'
+	call NextBarThisInstrument()
+	call SelectBar()
+	exe 'normal p'
+	exe 'normal F{lci{'
+	call InsertSpacers()
+	exe 'normal me'
+	call SelectBar()
+	exe "normal yo"
+	exe "normal p"
+	exe ':silent! s/\\instrumentSwitch "[a-z]*"//g'
+	exe 'normal 0d$`e'
+	call SelectBar()
+	exe 'normal pjdd`f'
+endfunction
+
 function! ContinueQuote()
 	call PreviousBarThisInstrument()
 	call SelectBar()
@@ -485,7 +505,7 @@ map ,ar {V}y}PV}:!node gmo-node.js<ENTER>
 
 """"""""""""""" Maps """""""""""""""""""""""
 map <Leader>q :call Quote()<CR>
-map <Leader>cq :call ContinueQuote()<CR>
+map <Leader>cq :call ContinueQuoteSingle()<CR>
 map <Leader>ch :call ChangeAndQuote()<CR>
 map <Leader>con :call ContinueQuoteLine()<CR>
 map <Leader>r :call InsertRests()<CR>
