@@ -430,6 +430,19 @@ function! Quote()
 	exe 'normal i\Q #"' . inst . '" '
 endfunction
 
+function! QuoteWithArg(instr)
+	let inst=a:instr
+	call SelectBar()
+	exe "normal yo\<ESC>p"
+ 	s/\cr/s/g
+	exe "normal y$`z"
+	call SelectBar()
+	exe "normal pjdd`z"
+	call SelectBar()
+	exe "normal S}"
+	exe 'normal i\Q #"' . inst . '" '
+endfunction
+
 function! ChangeAndQuote()
 	let inst = input("inst ?")
 	exe "normal mz"
