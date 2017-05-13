@@ -496,7 +496,7 @@ map <Leader>g,, :call GetFromInstrument()<CR>
 map <C-k> :call AddOctave()<CR>
 map <C-j> :call SubtractOctave()<CR>
 map <C-l> :call SearchNotes()<CR>
-map <C-b> :call SelectBars()<CR>
+au Filetype lilypond       map <C-b> :call SelectBars()<CR>
 map ,, :call SetSection()<CR>
 map ,< :call RemoveSelection()<CR>
 map ,<Space> :!osascript ~/scripts/SendKeystoREAPER.applescript<CR>
