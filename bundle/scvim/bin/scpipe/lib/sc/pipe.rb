@@ -16,8 +16,8 @@ module SC
 
   def self.sclang_path
     if @@sclang_path.empty?
-      if File.exists?("/Applications/SuperCollider.app/Contents/Resources/sclang")
-        return "/Applications/SuperCollider.app/Contents/Resources/sclang"
+      if File.exists?("/Applications/SuperCollider.app/Contents/MacOS/sclang")
+        return "/Applications/SuperCollider.app/Contents/MacOS/sclang"
       else
         warn "Could not find sclang executable.\nPlease make sure that SC is either installed at the default location e.g. '/Applications/SuperCollider.app' on a mac or add sclang to your shells search path."
         exit

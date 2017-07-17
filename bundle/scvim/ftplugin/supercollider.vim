@@ -198,7 +198,15 @@ endfunction
 " ========================================================================================
 
 let s:sclangStarted = 0
+function SClangTmux()
+call system("tmux split-window -p 20 ; tmux send-keys " . s:sclangPipeApp . " Enter ; tmux select-pane -U")
+            let s:sclangStarted = 1
+    endfunction
+    
+map ,T :call SClangTmux()<ENTER>
+map ,; A;<ESC>
 
+    
 function SClangStart()
   if filereadable("/tmp/sclang-pipe")
     echo "sclang is already running"
@@ -288,5 +296,9 @@ com -nargs=0 SClangKill call SClangKill()
 com -nargs=0 SClangRecompile call SClangRecompile()
 com -nargs=0 SCtags call SCtags()
 com -nargs=0 SChelp call SChelp('')
+
+"my commands
+map ,boot ma/boot<RETURN><C-l>`a
+
 
 " end supercollider.vim
