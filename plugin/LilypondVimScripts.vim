@@ -517,6 +517,7 @@ map ,comp :call Compile()<CR>
 map ,m ,comp<CR>
 map <C-g> :call JumpAgain()<CR>
 map <C-f> :call JumptoInstrument()<CR>
+map ,f :call    JumptoInstrument()<CR>
 map <C-d> cab,r<ESC>
 map <Leader>b :call PrevBar()<CR>l
 map <Leader>e :call NextBar()<CR>h
