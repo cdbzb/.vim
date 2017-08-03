@@ -369,6 +369,24 @@ function! EndHere()
 	execute 'silent! normal! dd``p'
 endfunction
 
+function! SetEndToLastBar()
+	execute 'normal gg'
+	call search("%bn","b")
+	call EndHere()
+endfunction
+
+function! SetStartToFirstBar()
+	execute 'normal G'
+	call search("%bn","")
+	call StartHere()
+endfunction
+
+function! WholeScore()
+	execute 'normal mz'
+	call SetStartToFirstBar()
+	call SetEndToLastBar()
+	execute 'normal ``'
+endfunction
 function! StartAtTimeSignature ()
 	call search('time\>' , 'bs')
 	call search('%bn' , 'b')
